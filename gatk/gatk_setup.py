@@ -35,4 +35,6 @@ system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* 
                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
 
 for system_command in system_commands:
-  os.system(system_command)
+  # os.system(system_command)
+  output = os.popen(system_command).read()
+  print(output)
