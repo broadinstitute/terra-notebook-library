@@ -3,6 +3,7 @@
 
 # Set your workspace bucket variable for this notebook.
 import os
+import subprocess
 BUCKET = os.environ['WORKSPACE_BUCKET']
 
 # Set workshop variable to access the most recent materials
@@ -36,5 +37,6 @@ system_commands = ["gsutil cp -L gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref
 
 for system_command in system_commands:
   # os.system(system_command)
-  output = os.popen(system_command).read()
+  # output = os.popen(system_command).read()
+  subprocess.run(system_command)
   print(output)
