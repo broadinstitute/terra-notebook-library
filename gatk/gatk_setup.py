@@ -22,9 +22,10 @@ for path in dirs_to_create:
 # Check if data is accessible. The command should list several gs:// URLs.
 system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
 file_contents = os.popen(system_command).read()
-print("\n\nChecking if data is accessible. This should list several gs:// URLS:")
-for f in file_contents.split('\n'):
-    print(f)
+if verbose:
+  print("\n\nChecking if data is accessible. This should list several gs:// URLS:")
+  for f in file_contents.split('\n'):
+      print(f)
 
 
 
@@ -38,5 +39,6 @@ for system_command in system_commands:
   os.system(system_command)
   target_folder = system_command.split(" ")[-1]
   copied_files = os.popen("ls "+target_folder).read()
-  print("copied files to "+target_folder+":")
-  print(copied_files)
+  if verbose:
+    print("Copied files to "+target_folder+":")
+    print(copied_files)
