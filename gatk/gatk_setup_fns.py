@@ -6,4 +6,6 @@ def gatk_setup():
     import os
     BUCKET = os.environ['WORKSPACE_BUCKET']
 
+    print("updated")
+
     return BUCKET
