@@ -22,6 +22,17 @@ for path in dirs_to_create:
 # Check if data is accessible. The command should list several gs:// URLs.
 system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
 file_contents = os.popen(system_command).read()
-print("\n\nChecking if data is accessible. The command should list several gs:// URLS:")
+print("\n\nChecking if data is accessible. This should list several gs:// URLS:")
 for f in file_contents.split('\n'):
     print(f)
+
+
+
+# Download Data to the Notebook
+system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
+
+for system_command in system_commands:
+  os.system(system_command)
