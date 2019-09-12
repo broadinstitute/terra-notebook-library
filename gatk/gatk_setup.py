@@ -3,7 +3,6 @@
 
 # Set your workspace bucket variable for this notebook.
 import os
-import subprocess
 BUCKET = os.environ['WORKSPACE_BUCKET']
 
 # Set workshop variable to access the most recent materials
@@ -36,7 +35,7 @@ system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* 
                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
 
 for system_command in system_commands:
-  # os.system(system_command)
-  # output = os.popen(system_command).read()
-  subprocess.run(system_command)
-  # print(output)
+  os.system(system_command)
+  copied_files = os.popen("gsutil ls "+system_command.split(" ")[-1]).read()
+  print("copied files:")
+  print(copied_files)
