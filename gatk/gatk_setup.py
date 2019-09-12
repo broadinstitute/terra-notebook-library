@@ -36,6 +36,7 @@ system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* 
 
 for system_command in system_commands:
   os.system(system_command)
-  copied_files = os.popen("gsutil ls "+system_command.split(" ")[-1]).read()
-  print("copied files:")
+  target_folder = system_command.split(" ")[-1]
+  copied_files = os.popen("gsutil ls "+target_folder).read()
+  print("copied files to "+target_folder+":")
   print(copied_files)
