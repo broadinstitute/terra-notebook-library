@@ -30,13 +30,13 @@ for f in file_contents.split('\n'):
 
 
 # Download Data to the Notebook
-system_commands = ["gsutil cp -L gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
-                   "gsutil cp -L gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
-                   "gsutil cp -L gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
-                   "gsutil cp -L gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
+system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
+                   "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
 
 for system_command in system_commands:
   # os.system(system_command)
   # output = os.popen(system_command).read()
   subprocess.run(system_command)
-  print(output)
+  # print(output)
