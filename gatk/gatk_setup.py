@@ -17,5 +17,5 @@ dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
 
 for path in dirs_to_create:
   if not os.path.exists(path):
-    os.mkdir(path)
+    os.makedirs(path)
 
