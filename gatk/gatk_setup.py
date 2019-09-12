@@ -21,6 +21,6 @@ for path in dirs_to_create:
 
 # Check if data is accessible. The command should list several gs:// URLs.
 system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
-print(system_command)
-print(os.system(system_command))
-file_contents = os.system(system_command)
+# print(system_command)
+# print(os.system(system_command))
+file_contents = os.popen(system_command).read()
