@@ -22,6 +22,6 @@ for path in dirs_to_create:
 # Check if data is accessible. The command should list several gs:// URLs.
 system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
 file_contents = os.popen(system_command).read()
-print("Accessible files:")
+print("\n\nChecking if data is accessible. The command should list several gs:// URLS:")
 for f in file_contents.split('\n'):
     print(f)
