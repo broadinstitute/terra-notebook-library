@@ -20,4 +20,4 @@ for path in dirs_to_create:
     os.makedirs(path)
 
 # Check if data is accessible. The command should list several gs:// URLs.
-os.system("gsutil ls gs://gatk-tutorials/$WORKSHOP/2-germline/")
+file_contents = os.system("gsutil ls gs://gatk-tutorials/$WORKSHOP/2-germline/")
