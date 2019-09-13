@@ -7,5 +7,5 @@ setup(name='terranblib',
       author='DSP Field Engineering',
       author_email='marymorg@broadinstitute.org',
       license='MIT',
-      packages=['terranblib'],
+      packages=['terranblib','terranblib.gatk'],
       zip_safe=False)
