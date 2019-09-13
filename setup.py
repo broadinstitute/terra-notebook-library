@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='terranblib',
       version='0.1',
@@ -7,5 +7,5 @@ setup(name='terranblib',
       author='DSP Field Engineering',
       author_email='marymorg@broadinstitute.org',
       license='MIT',
-      packages=['terranblib','terranblib.gatk'],
+      packages=find_packages(), #['terranblib','terranblib.gatk'],
       zip_safe=False)
