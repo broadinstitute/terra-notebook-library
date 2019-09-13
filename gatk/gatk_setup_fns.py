@@ -42,4 +42,4 @@ def gatk_setup_1(verbose=False):
             print("Copied files to "+target_folder+":")
             print(copied_files)
     
-    return BUCKET
+    return BUCKET, WORKSHOP
