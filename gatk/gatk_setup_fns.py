@@ -2,12 +2,18 @@
 """
 import os
 
-def gatk_setup_1(verbose=False):
-    # Set your workspace bucket variable for this notebook.
-    BUCKET = os.environ['WORKSPACE_BUCKET']
+# Set your workspace bucket variable for this notebook.
+BUCKET = os.environ['WORKSPACE_BUCKET']
 
-    # Set workshop variable to access the most recent materials
-    WORKSHOP = "workshop_1908"
+# def get_bucket():
+    
+#     return __BUCKET
+
+
+# Set workshop variable to access the most recent materials
+WORKSHOP = "workshop_1908"
+
+def gatk_setup_1(verbose=False):
 
     # Create directories for your files to live inside this notebook
     dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
@@ -43,3 +49,4 @@ def gatk_setup_1(verbose=False):
             print(copied_files)
     
     return BUCKET, WORKSHOP
+
