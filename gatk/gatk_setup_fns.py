@@ -2,20 +2,11 @@
 """
 import os
 
-# def get_bucket():
-#     return __BUCKET
-
 # Set your workspace bucket variable for this notebook.
 BUCKET = os.environ['WORKSPACE_BUCKET']
 
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
-
-BROAD = "Field!"
-
-BASS = "~salmon"
-
-TROUT = "mike"
 
 def gatk_setup_1(verbose=False):
     
@@ -53,6 +44,5 @@ def gatk_setup_1(verbose=False):
         if verbose:
             print("Copied files to "+target_folder+":")
             print(copied_files)
-    
-    return BUCKET, WORKSHOP, BROAD
+
 
