@@ -8,7 +8,7 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 # def get_bucket():
     
 #     return __BUCKET
-
+SALMON = "Friday"
 
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
