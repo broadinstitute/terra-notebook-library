@@ -9,8 +9,11 @@ import os
 # WORKSHOP = "workshop_1908"
 
 def gatk_init(verbose=False):
-    global BUCKET = os.environ['WORKSPACE_BUCKET']
-    global WORKSHOP = "workshop_1908"
+    global BUCKET 
+    global WORKSHOP
+    
+    BUCKT = os.environ['WORKSPACE_BUCKET']
+    WORKSHOP = "workshop_1908"
 
     # Create directories for your files to live inside this notebook
     dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
