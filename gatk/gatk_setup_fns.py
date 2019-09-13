@@ -2,6 +2,9 @@
 """
 import os
 
+
+BUCKET = "not set"
+WORKSHOP = "not set"
 # # Set your workspace bucket variable for this notebook.
 # BUCKET = os.environ['WORKSPACE_BUCKET']
 
@@ -11,8 +14,8 @@ import os
 def gatk_init(verbose=False):
     global BUCKET 
     global WORKSHOP
-    
-    BUCKT = os.environ['WORKSPACE_BUCKET']
+
+    BUCKET = os.environ['WORKSPACE_BUCKET']
     WORKSHOP = "workshop_1908"
 
     # Create directories for your files to live inside this notebook
