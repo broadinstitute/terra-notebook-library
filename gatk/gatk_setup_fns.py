@@ -8,7 +8,7 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
 
-def init(verbose=False):
+def gatk_init(verbose=False):
     # Create directories for your files to live inside this notebook
     dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
                     "/home/jupyter-user/2-germline-vd/ref",
