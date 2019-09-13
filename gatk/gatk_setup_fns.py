@@ -3,8 +3,6 @@
 import os
 
 
-BUCKET = "not set"
-WORKSHOP = "not set"
 # # Set your workspace bucket variable for this notebook.
 # BUCKET = os.environ['WORKSPACE_BUCKET']
 
@@ -12,11 +10,8 @@ WORKSHOP = "not set"
 # WORKSHOP = "workshop_1908"
 
 def gatk_init(verbose=False):
-    global BUCKET 
-    global WORKSHOP
-
-    BUCKET = os.environ['WORKSPACE_BUCKET']
-    WORKSHOP = "workshop_1908"
+    globals()["BUCKET"] = os.environ['WORKSPACE_BUCKET']
+    globals()["WORKSHOP"] = "workshop_1908"
 
     # Create directories for your files to live inside this notebook
     dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
