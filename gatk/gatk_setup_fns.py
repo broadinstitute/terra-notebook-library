@@ -41,3 +41,5 @@ def gatk_setup_1(verbose=False):
         if verbose:
             print("Copied files to "+target_folder+":")
             print(copied_files)
+    
+    return BUCKET
