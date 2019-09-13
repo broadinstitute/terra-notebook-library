@@ -1,4 +1,18 @@
 """ setup files for GATKTutorials-Germline notebooks
+
+notes to future selves: 
+- variables defined in Python that get pushed to the value stack become 
+accessible to Bash using Jupyter Magics.
+- to give Jupyter access to "global" variables such as BUCKET, we define them 
+here outside of functions, but we need to import * in Jupyter to have them be 
+pushed to the value stack.
+- a global variable defined inside functions will not be pushed to the value stack
+
+to do: 
+- figure out how to push a global variable to the value stack without import *
+- make use of decorators, if needed, to make sure if someone runs import gatk_init,
+the globals do get pushed.
+
 """
 import os
 
@@ -10,7 +24,9 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 WORKSHOP = "workshop_1908"
 
 def gatk_init(verbose=False):
-
+    global BUCKET
+    global WORKSHOP
+    
     # Create directories for your files to live inside this notebook
     dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
                     "/home/jupyter-user/2-germline-vd/ref",
