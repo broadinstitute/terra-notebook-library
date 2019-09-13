@@ -2,7 +2,7 @@
 """
 import os
 
-def gatk_setup(verbose=False):
+def gatk_setup_1(verbose=False):
     # Set your workspace bucket variable for this notebook.
     BUCKET = os.environ['WORKSPACE_BUCKET']
 
