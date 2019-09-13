@@ -15,6 +15,8 @@ BROAD = "Field!"
 
 BASS = "~salmon"
 
+TROUT = "mike"
+
 def gatk_setup_1(verbose=False):
     
     BROAD = "Streams!"
