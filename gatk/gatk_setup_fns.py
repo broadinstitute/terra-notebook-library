@@ -13,6 +13,8 @@ WORKSHOP = "workshop_1908"
 
 BROAD = "Field!"
 
+BASS = "~salmon"
+
 def gatk_setup_1(verbose=False):
     
     BROAD = "Streams!"
