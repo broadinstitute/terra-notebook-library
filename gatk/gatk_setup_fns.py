@@ -15,6 +15,7 @@ the globals do get pushed.
 
 """
 import os
+import pip
 
 
 # Set your workspace bucket variable for this notebook.
@@ -22,6 +23,22 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
+
+def copy_files(system_command, verbose=False):
+    
+    file_contents = os.popen(system_command).read()
+    
+    # parse a list of the copied files
+    copied_files = []
+    for f in file_contents.split('\n'):
+        if 'gs://' in f:
+            copied_files.append(f)
+    
+    if verbose:
+        print("\n\nCopied files:")
+        print('\t'+'\n\t'.join(copied_files))
+
+    return copied_files
 
 def gatk_init(verbose=False):
     global BUCKET
@@ -40,11 +57,20 @@ def gatk_init(verbose=False):
 
     # Check if data is accessible. The command should list several gs:// URLs.
     system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
-    file_contents = os.popen(system_command).read()
-    if verbose:
-        print("\n\nChecking if data is accessible. This should list several gs:// URLS:")
-        for f in file_contents.split('\n'):
-            print(f)
+    copied_files = copy_files(system_command, verbose)
+    
+    # if files were not copied, pip install google cloud
+    # TODO: test that this works!
+    if len(copied_files) == 0:
+        print('WARNING: no files were copied. pip installing google-cloud-storage...')
+        pip.main(['install', google-cloud-storage])
+
+        # try again to copy the files
+        copied_files = copy_files(system_command, verbose)
+        
+        if len(copied_files) == 0: # if you still have a problem
+            print('WARNING: pip install google-cloud-storage did not solve the problem! No files were copied.')
+
 
     # Download Data to the Notebook
     system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
