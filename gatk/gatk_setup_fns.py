@@ -24,29 +24,28 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
 
-def copy_files(system_command, verbose=False):
+def check_files(system_command, verbose=False):
     
     file_contents = os.popen(system_command).read()
     
-    # parse a list of the copied files
-    copied_files = []
+    # parse a list of the accessible files
+    accessible_files = []
     for f in file_contents.split('\n'):
         if 'gs://' in f:
-            copied_files.append(f)
+            accessible_files.append(f)
     
-    if len(copied_files) > 0:
-        outcome = 'Data copied successfully!'
+    if len(accessible_files) > 0:
+        outcome = 'Data is accessible!'
     else:
-        outcome = 'WARNING: No data copied!'
+        outcome = 'WARNING: No data is accessible!'
 
     if verbose:
-        print("\n\nCopied files:")
-        print('\t'+'\n\t'.join(copied_files))
-        print(outcome)
+        print("\n\nAccessible files:")
+        print('\t'+'\n\t'.join(accessible_files))
     else:
         print(outcome)
 
-    return copied_files
+    return accessible_files
 
 def gatk_init(verbose=False):
     global BUCKET
@@ -64,20 +63,20 @@ def gatk_init(verbose=False):
             os.makedirs(path)
 
     # Check if data is accessible. The command should list several gs:// URLs.
-    system_command = "gsutil ls gs://gatk-tutorials/"+WORKSHOP+"/2-germline/"
-    copied_files = copy_files(system_command, verbose)
+    system_command = 'gsutil ls gs://gatk-tutorials/'+WORKSHOP+'/2-germline/'
+    accessible_files = check_files(system_command, verbose)
     
-    # if files were not copied, pip install google cloud
+    # if files were not listed, pip install google cloud
     # TODO: test that this works!
-    if len(copied_files) == 0:
-        print('WARNING: no files were copied. pip installing google-cloud-storage...')
+    if len(accessible_files) == 0:
+        print('WARNING: no files were found. pip installing google-cloud-storage...')
         pip.main(['install', google-cloud-storage])
 
-        # try again to copy the files
-        copied_files = copy_files(system_command, verbose)
+        # try again to access the files
+        accessible_files = check_files(system_command, verbose)
         
-        if len(copied_files) == 0: # if you still have a problem
-            print('WARNING: pip install google-cloud-storage did not solve the problem! No files were copied.')
+        if len(accessible_files) == 0: # if you still have a problem
+            print('WARNING: pip install google-cloud-storage did not solve the problem! Data not accessible.')
 
 
     # Download Data to the Notebook
@@ -97,7 +96,6 @@ def gatk_init(verbose=False):
         if verbose:
             print("Copied files to "+target_folder+":")
             print(copied_files)
-            print(outcome)
         else:
             print("Copied files to " + target_folder + " - " + outcome)
 
