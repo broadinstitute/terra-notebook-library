@@ -34,9 +34,17 @@ def copy_files(system_command, verbose=False):
         if 'gs://' in f:
             copied_files.append(f)
     
+    if len(copied_files) > 0:
+        outcome = 'Data copied successfully!'
+    else:
+        outcome = 'WARNING: No data copied!'
+
     if verbose:
         print("\n\nCopied files:")
         print('\t'+'\n\t'.join(copied_files))
+        print(outcome)
+    else:
+        print(outcome)
 
     return copied_files
 
@@ -82,8 +90,15 @@ def gatk_init(verbose=False):
         os.system(system_command)
         target_folder = system_command.split(" ")[-1]
         copied_files = os.popen("ls "+target_folder).read()
+        if len(copied_files) > 0:
+            outcome = 'Data copied successfully!'
+        else:
+            outcome = 'WARNING: No data copied!'
         if verbose:
             print("Copied files to "+target_folder+":")
             print(copied_files)
+            print(outcome)
+        else:
+            print("Copied files to " + target_folder + " - " + outcome)
 
 
