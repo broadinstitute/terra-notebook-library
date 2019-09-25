@@ -24,14 +24,30 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
 
-# Create directories for your files to live inside this notebook
+# Set up directories for the files to live inside this notebook
 file_directories = {'germline': ["/home/jupyter-user/2-germline-vd/sandbox/",
-                "/home/jupyter-user/2-germline-vd/ref",
-                "/home/jupyter-user/2-germline-vd/resources",
-                "/home/jupyter-user/2-germline-vd/gvcfs",
-                "/home/jupyter-user/CNN/Output/"],
+                                "/home/jupyter-user/2-germline-vd/ref",
+                                "/home/jupyter-user/2-germline-vd/resources",
+                                "/home/jupyter-user/2-germline-vd/gvcfs",
+                                "/home/jupyter-user/CNN/Output/"],
                 'somatic': ["/home/jupyter-user/sandbox"]
                 }
+
+# Set up command to check for data accessibility
+check_data_commands = {'germline': 'gsutil ls gs://gatk-tutorials/'+WORKSHOP+'/2-germline/',
+                        'somatic': 'gsutil ls gs://gatk-tutorials/'+WORKSHOP+'/3-somatic/'
+                        }
+
+# Set up commands to copy data to the notebook
+data_copy_commands = {'germline': [ "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
+                                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
+                                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
+                                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"],
+                    'somatic': ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/bams /home/jupyter-user/",
+                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/ref /home/jupyter-user/",
+                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/resources /home/jupyter-user/",
+                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/mutect2_precomputed /home/jupyter-user/"]
+                    }
 
 
 def check_files(system_command, verbose=False):
@@ -71,7 +87,7 @@ def gatk_init(tutorial, verbose=False):
             os.makedirs(path)
 
     # Check if data is accessible. The command should list several gs:// URLs.
-    system_command = 'gsutil ls gs://gatk-tutorials/'+WORKSHOP+'/2-germline/'
+    system_command = check_data_commands[tutorial]
     accessible_files = check_files(system_command, verbose)
     
     # if files were not listed, pip install google cloud
@@ -88,10 +104,7 @@ def gatk_init(tutorial, verbose=False):
 
 
     # Download Data to the Notebook
-    system_commands = ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/ref/* /home/jupyter-user/2-germline-vd/ref",
-                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
-                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
-                    "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"]
+    system_commands = data_copy_commands[tutorial]
 
     for system_command in system_commands:
         os.system(system_command)
