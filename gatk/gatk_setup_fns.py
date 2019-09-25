@@ -43,10 +43,10 @@ data_copy_commands = {'germline': [ "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/
                                     "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/trio.ped /home/jupyter-user/2-germline-vd/",
                                     "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/resources/* /home/jupyter-user/2-germline-vd/resources/",
                                     "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/2-germline/gvcfs/* /home/jupyter-user/2-germline-vd/gvcfs/"],
-                    'somatic': ["gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/bams /home/jupyter-user/",
-                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/ref /home/jupyter-user/",
-                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/resources /home/jupyter-user/",
-                                "gsutil cp gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/mutect2_precomputed /home/jupyter-user/"]
+                    'somatic': ["gsutil -m cp -r gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/bams /home/jupyter-user/",
+                                "gsutil -m cp -r gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/ref /home/jupyter-user/",
+                                "gsutil -m cp -r gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/resources /home/jupyter-user/",
+                                "gsutil -m cp -r gs://gatk-tutorials/"+WORKSHOP+"/3-somatic/mutect2_precomputed /home/jupyter-user/"]
                     }
 
 
