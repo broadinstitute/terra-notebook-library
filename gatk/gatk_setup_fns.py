@@ -24,6 +24,16 @@ BUCKET = os.environ['WORKSPACE_BUCKET']
 # Set workshop variable to access the most recent materials
 WORKSHOP = "workshop_1908"
 
+# Create directories for your files to live inside this notebook
+file_directories = {'germline': ["/home/jupyter-user/2-germline-vd/sandbox/",
+                "/home/jupyter-user/2-germline-vd/ref",
+                "/home/jupyter-user/2-germline-vd/resources",
+                "/home/jupyter-user/2-germline-vd/gvcfs",
+                "/home/jupyter-user/CNN/Output/"],
+                'somatic': ["/home/jupyter-user/sandbox"]
+                }
+
+
 def check_files(system_command, verbose=False):
     
     file_contents = os.popen(system_command).read()
@@ -47,16 +57,14 @@ def check_files(system_command, verbose=False):
 
     return accessible_files
 
-def gatk_init(verbose=False):
+def gatk_init(tutorial, verbose=False):
+    ''' tutorial = 'germline' or 'somatic'
+    '''
     global BUCKET
     global WORKSHOP
     
     # Create directories for your files to live inside this notebook
-    dirs_to_create = ["/home/jupyter-user/2-germline-vd/sandbox/",
-                    "/home/jupyter-user/2-germline-vd/ref",
-                    "/home/jupyter-user/2-germline-vd/resources",
-                    "/home/jupyter-user/2-germline-vd/gvcfs",
-                    "/home/jupyter-user/CNN/Output/"]
+    dirs_to_create = file_directories[tutorial]
 
     for path in dirs_to_create:
         if not os.path.exists(path):
