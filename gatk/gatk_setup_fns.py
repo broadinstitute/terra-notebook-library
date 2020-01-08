@@ -30,8 +30,12 @@ file_directories = {'germline': ["/home/jupyter-user/2-germline-vd/sandbox/",
                                 "/home/jupyter-user/2-germline-vd/resources",
                                 "/home/jupyter-user/2-germline-vd/gvcfs",
                                 "/home/jupyter-user/CNN/Output/"],
-                'somatic': ["/home/jupyter-user/sandbox"]
-                }
+                    'somatic': ["/home/jupyter-user/sandbox",
+                                "/home/jupyter-user/3-somatic-cna/sandbox/",
+                                "/home/jupyter-user/3-somatic-cna/sandbox/cna_plots/",
+                                "/home/jupyter-user/3-somatic-cna/ref/",
+                                "/home/jupyter-user/3-somatic-cna/cna_inputs"]
+                    }
 
 # Set up command to check for data accessibility
 check_data_commands = {'germline': 'gsutil ls gs://gatk-tutorials/'+WORKSHOP+'/2-germline/',
@@ -61,7 +65,7 @@ def check_files(system_command, verbose=False):
             accessible_files.append(f)
     
     if len(accessible_files) > 0:
-        outcome = 'Data is accessible!'
+        outcome = 'Data are accessible in '+file_contents
     else:
         outcome = 'WARNING: No data is accessible!'
 
