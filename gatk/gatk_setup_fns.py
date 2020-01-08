@@ -22,7 +22,7 @@ import pip
 BUCKET = os.environ['WORKSPACE_BUCKET']
 
 # Set workshop variable to access the most recent materials
-WORKSHOP = "workshop_1908"
+WORKSHOP = "workshop_1910"
 
 # Set up directories for the files to live inside this notebook
 file_directories = {'germline': ["/home/jupyter-user/2-germline-vd/sandbox/",
@@ -123,5 +123,7 @@ def gatk_init(tutorial, verbose=False):
             print(copied_files)
         else:
             print("Copied files to " + target_folder + " - " + outcome)
+    
+    print("\nInitialization complete!")
 
 
